@@ -21,9 +21,20 @@ class PostCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
 
-    func configureWith(post: ChildData) {
+    func configureWith(post: PostData) {
         title.numberOfLines = 0
         title.text = post.title
+        author.text = post.author
+        numberOfComments.text = "comments: \(post.numComments)"
+        readStatus.backgroundColor = post.clicked ? #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1) : #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        entryDate.text = getDate(from: post)
+        thumbnail.downloaded(from: post.thumbnail, contentMode: .scaleAspectFill)
         self.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    }
+    
+    private func getDate(from post: PostData) -> String {
+        let dateTime = post.created
+        let postDate = Date(timeIntervalSince1970: Double(dateTime))
+        return postDate.timeAgoDisplay()
     }
 }

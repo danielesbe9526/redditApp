@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		DAA4A05D26EFCD490030BDCC /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA4A05C26EFCD490030BDCC /* Service.swift */; };
-		DAA4A05F26EFCE7D0030BDCC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA4A05E26EFCE7D0030BDCC /* Post.swift */; };
 		DAA4A06126EFCEDA0030BDCC /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA4A06026EFCEDA0030BDCC /* Listing.swift */; };
 		DAA4A06426EFF07B0030BDCC /* MainViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA4A06326EFF07B0030BDCC /* MainViewVM.swift */; };
 		DAA4A06D26F001C30030BDCC /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA4A06B26F001C30030BDCC /* PostCollectionViewCell.swift */; };
 		DAA4A06E26F001C30030BDCC /* PostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA4A06C26F001C30030BDCC /* PostCollectionViewCell.xib */; };
+		DAA4A07126F00F450030BDCC /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA4A07026F00F450030BDCC /* DateExtension.swift */; };
 		DAF4E5D526EFB9580013E87D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4E5D426EFB9580013E87D /* AppDelegate.swift */; };
 		DAF4E5D726EFB9580013E87D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4E5D626EFB9580013E87D /* SceneDelegate.swift */; };
 		DAF4E5D926EFB9580013E87D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4E5D826EFB9580013E87D /* ViewController.swift */; };
@@ -42,11 +42,11 @@
 
 /* Begin PBXFileReference section */
 		DAA4A05C26EFCD490030BDCC /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		DAA4A05E26EFCE7D0030BDCC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		DAA4A06026EFCEDA0030BDCC /* Listing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
 		DAA4A06326EFF07B0030BDCC /* MainViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewVM.swift; sourceTree = "<group>"; };
 		DAA4A06B26F001C30030BDCC /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		DAA4A06C26F001C30030BDCC /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCollectionViewCell.xib; sourceTree = "<group>"; };
+		DAA4A07026F00F450030BDCC /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		DAF4E5D126EFB9580013E87D /* RedditApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF4E5D426EFB9580013E87D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAF4E5D626EFB9580013E87D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +115,14 @@
 			path = "cell's Views";
 			sourceTree = "<group>";
 		};
+		DAA4A06F26F00F2B0030BDCC /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DAA4A07026F00F450030BDCC /* DateExtension.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 		DAF4E5C826EFB9580013E87D = {
 			isa = PBXGroup;
 			children = (
@@ -140,12 +148,13 @@
 			children = (
 				DAA4A06526EFF4B00030BDCC /* Views */,
 				DAA4A06226EFF05C0030BDCC /* ViewModel */,
-				DAF4E60426EFBF3E0013E87D /* Router */,
+				DAF4E60426EFBF3E0013E87D /* Service */,
 				DAF4E5D426EFB9580013E87D /* AppDelegate.swift */,
 				DAF4E5D626EFB9580013E87D /* SceneDelegate.swift */,
 				DAF4E5DD26EFB95B0013E87D /* Assets.xcassets */,
 				DAF4E5DF26EFB95B0013E87D /* LaunchScreen.storyboard */,
 				DAF4E5E226EFB95B0013E87D /* Info.plist */,
+				DAA4A06F26F00F2B0030BDCC /* extensions */,
 			);
 			path = RedditApp;
 			sourceTree = "<group>";
@@ -168,14 +177,13 @@
 			path = RedditAppUITests;
 			sourceTree = "<group>";
 		};
-		DAF4E60426EFBF3E0013E87D /* Router */ = {
+		DAF4E60426EFBF3E0013E87D /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				DAA4A05C26EFCD490030BDCC /* Service.swift */,
 				DAA4A06026EFCEDA0030BDCC /* Listing.swift */,
-				DAA4A05E26EFCE7D0030BDCC /* Post.swift */,
 			);
-			path = Router;
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,13 +318,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAF4E5D926EFB9580013E87D /* ViewController.swift in Sources */,
+				DAA4A07126F00F450030BDCC /* DateExtension.swift in Sources */,
 				DAA4A05D26EFCD490030BDCC /* Service.swift in Sources */,
 				DAF4E5D526EFB9580013E87D /* AppDelegate.swift in Sources */,
 				DAF4E5D726EFB9580013E87D /* SceneDelegate.swift in Sources */,
 				DAA4A06D26F001C30030BDCC /* PostCollectionViewCell.swift in Sources */,
 				DAA4A06126EFCEDA0030BDCC /* Listing.swift in Sources */,
 				DAA4A06426EFF07B0030BDCC /* MainViewVM.swift in Sources */,
-				DAA4A05F26EFCE7D0030BDCC /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

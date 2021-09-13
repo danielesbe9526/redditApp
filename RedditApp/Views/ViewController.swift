@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet weak private var collectionView: UICollectionView!
     
     private var viewModel = MainViewVM()
-    var posts: [Child] = []
+    var posts: [Post] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: MainViewDelegate {
-    func topPost(_ post: [Child]?) {
+    func topPost(_ post: [Post]?) {
         guard let posts = post else { return }
         self.posts = posts
         self.collectionView.reloadData()

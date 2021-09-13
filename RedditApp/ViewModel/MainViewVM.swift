@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MainViewDelegate {
-    func topPost(_ post: [Child]?)
+    func topPost(_ post: [Post]?)
 }
 
 class MainViewVM {
@@ -16,7 +16,7 @@ class MainViewVM {
     
     func searchPost() {
         let service = RedditService()
-        service.searchSubreddit() { [weak self] result in
+        service.searchPost { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let posts):
