@@ -8,21 +8,23 @@
 import Foundation
 
 protocol MainViewDelegate {
-    func topPost(_ post: [Post]?)
+    func listOfTopPosts(_ list: ListData?)
 }
 
 class MainViewVM {
     var delegate: MainViewDelegate?
-    
+    var listData: ListData?
+
     func searchPost() {
         let service = RedditService()
-        service.searchPost { [weak self] result in
+        service.searchPost(afterId: listData?.after ?? "") { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let posts):
-                    self?.delegate?.topPost(posts)
+                case .success(let listData):
+                    self?.listData = listData
+                    self?.delegate?.listOfTopPosts(listData)
                 case .failure:
-                    self?.delegate?.topPost(nil)
+                    self?.delegate?.listOfTopPosts(nil)
                 }
             }
         }

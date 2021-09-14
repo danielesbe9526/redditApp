@@ -13,6 +13,8 @@
 		DAA4A06D26F001C30030BDCC /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA4A06B26F001C30030BDCC /* PostCollectionViewCell.swift */; };
 		DAA4A06E26F001C30030BDCC /* PostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA4A06C26F001C30030BDCC /* PostCollectionViewCell.xib */; };
 		DAA4A07126F00F450030BDCC /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA4A07026F00F450030BDCC /* DateExtension.swift */; };
+		DAA4A07426F124110030BDCC /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA4A07226F124110030BDCC /* ImageViewController.swift */; };
+		DAA4A07526F124110030BDCC /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA4A07326F124110030BDCC /* ImageViewController.xib */; };
 		DAF4E5D526EFB9580013E87D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4E5D426EFB9580013E87D /* AppDelegate.swift */; };
 		DAF4E5D726EFB9580013E87D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4E5D626EFB9580013E87D /* SceneDelegate.swift */; };
 		DAF4E5D926EFB9580013E87D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4E5D826EFB9580013E87D /* ViewController.swift */; };
@@ -47,6 +49,8 @@
 		DAA4A06B26F001C30030BDCC /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		DAA4A06C26F001C30030BDCC /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCollectionViewCell.xib; sourceTree = "<group>"; };
 		DAA4A07026F00F450030BDCC /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		DAA4A07226F124110030BDCC /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		DAA4A07326F124110030BDCC /* ImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
 		DAF4E5D126EFB9580013E87D /* RedditApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF4E5D426EFB9580013E87D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAF4E5D626EFB9580013E87D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				DAF4E5D826EFB9580013E87D /* ViewController.swift */,
+				DAA4A07226F124110030BDCC /* ImageViewController.swift */,
+				DAA4A07326F124110030BDCC /* ImageViewController.xib */,
 				DAF4E5DA26EFB9580013E87D /* Main.storyboard */,
 				DAA4A06626EFF4BE0030BDCC /* cell's Views */,
 			);
@@ -289,6 +295,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAA4A07526F124110030BDCC /* ImageViewController.xib in Resources */,
 				DAA4A06E26F001C30030BDCC /* PostCollectionViewCell.xib in Resources */,
 				DAF4E5E126EFB95B0013E87D /* LaunchScreen.storyboard in Resources */,
 				DAF4E5DE26EFB95B0013E87D /* Assets.xcassets in Resources */,
@@ -318,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAF4E5D926EFB9580013E87D /* ViewController.swift in Sources */,
+				DAA4A07426F124110030BDCC /* ImageViewController.swift in Sources */,
 				DAA4A07126F00F450030BDCC /* DateExtension.swift in Sources */,
 				DAA4A05D26EFCD490030BDCC /* Service.swift in Sources */,
 				DAF4E5D526EFB9580013E87D /* AppDelegate.swift in Sources */,
@@ -500,8 +508,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RC2MJ8GCP9;
+				DEVELOPMENT_TEAM = WW5K829KP9;
 				INFOPLIST_FILE = RedditApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -509,6 +518,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = DanielBeltran.RedditApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -520,7 +530,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RC2MJ8GCP9;
+				DEVELOPMENT_TEAM = WW5K829KP9;
 				INFOPLIST_FILE = RedditApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

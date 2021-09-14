@@ -17,8 +17,8 @@ class RedditService {
         self.decoder = decoder
     }
     
-    func searchPost(completion: @escaping (Result<[Post], Error>) -> Void) {
-        guard let url = URL(string: "https://www.reddit.com/r/all/top.json?limit=20") else {
+    func searchPost(afterId: String, completion: @escaping (Result<ListData, Error>) -> Void) {
+        guard let url = URL(string: "https://www.reddit.com/r/all/top.json?limit=10&after=\(afterId)") else {
             preconditionFailure("Failed to construct search URL ")
         }
                 
@@ -30,7 +30,7 @@ class RedditService {
                 do {
                     let data = data ?? Data()
                     let response = try JSONDecoder().decode(List.self, from: data)
-                    completion(.success(response.data.children ))
+                    completion(.success(response.data))
                 }
                 catch {
                     completion(.failure(error))

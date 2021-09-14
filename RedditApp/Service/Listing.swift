@@ -21,13 +21,13 @@ struct ListData: Codable {
 // MARK: - Post
 struct Post: Codable {
     let kind: String
-    let data: PostData
+    var data: PostData
 }
 
 // MARK: - ChildData
 struct PostData: Codable {
     let title: String
-    let clicked: Bool
+    var clicked: Bool
     let thumbnail: String
     let author: String
     let numComments: Int
