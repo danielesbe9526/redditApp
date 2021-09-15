@@ -1,22 +1,24 @@
 //
-//  MainViewVM.swift
+//  PostListViewModel.swift
 //  RedditApp
 //
 //  Created by Daniel Esteban Beltran Beltran on 13/09/21.
 //
 
 import Foundation
+import UIKit
 
-protocol MainViewDelegate {
+protocol PostViewModelDelegate {
     func listOfTopPosts(_ list: ListData?)
 }
 
-class MainViewVM {
-    var delegate: MainViewDelegate?
+class PostListViewModel {
+    
+    var delegate: PostViewModelDelegate?
     var listData: ListData?
-
+    let service = RedditService()
+    
     func searchPost() {
-        let service = RedditService()
         service.searchPost(afterId: listData?.after ?? "") { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
