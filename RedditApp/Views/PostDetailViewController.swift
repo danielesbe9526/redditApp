@@ -26,6 +26,13 @@ class PostDetailViewController: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
+        cardView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
     private func configureUI() {
         guard let post = post else { return }
         
@@ -60,6 +67,17 @@ class PostDetailViewController: UIViewController {
         cardView.layer.cornerRadius = 5
     }
     
+    @objc func didTapView(_ sender: UITapGestureRecognizer) {
+        print("did tap view", sender)
+        if let post = post, !post.isVideo, let imageURL = URL(string: post.url) {
+            let imageViewController = ImageViewController()
+            
+            navigationController?.present(imageViewController, animated: true, completion: {
+                imageViewController.loadImageWith(imageURL)
+            })
+        }
+    }
+    
     @IBAction func save(_ sender: Any) {
         guard let image = thumbnail.image else { return }
         UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
@@ -80,7 +98,6 @@ class PostDetailViewController: UIViewController {
 
 extension PostDetailViewController: PostSelectionDelegate {
     func postSelected(_ newPost: Post) {
-        print("selected new post")
         post = newPost.data
     }
 }

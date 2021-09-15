@@ -30,6 +30,25 @@ class PostListTableViewController: UITableViewController {
         myRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         myRefreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.refreshControl = myRefreshControl
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(addTapped))
+    }
+    
+    @objc func addTapped(_ sender: AnyObject) {
+        let size = self.posts.count - 1
+        self.viewModel.listData = nil
+        var indexPaths: [IndexPath] = []
+        
+        for index in stride(from: size, through: 0, by: -1) {
+            let indexPath = IndexPath(row: index, section: 0)
+            indexPaths.append(indexPath)
+            self.posts.remove(at: indexPath.row)
+        }
+        
+        UIView.animate(withDuration: 0.9) {
+            self.tableView.deleteRows(at: indexPaths, with: .middle)
+            self.tableView.reloadData()
+        }
     }
     
     @objc func refresh(_ sender: AnyObject) {
@@ -74,15 +93,23 @@ class PostListTableViewController: UITableViewController {
             splitViewController?.showDetailViewController(detailNavigationController, sender: nil)
         }
     }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            posts.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+         }
+    }
 }
 
 extension PostListTableViewController: PostViewModelDelegate {
     func listOfTopPosts(_ list: ListData?) {
-        guard let list = list else { return }
-        tableView.reloadData()
-        viewModel.listData = list
-        posts += list.children
         isPageRefreshing = false
         refreshControl?.endRefreshing()
+        
+        guard let list = list else { return }
+        viewModel.listData = list
+        posts += list.children
+        tableView.reloadData()
     }
 }

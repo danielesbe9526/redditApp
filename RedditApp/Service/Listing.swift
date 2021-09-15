@@ -32,11 +32,14 @@ struct PostData: Codable {
     let author: String
     let numComments: Int
     let created: Int
+    let isVideo: Bool
+    let url: String
 
     enum CodingKeys: String, CodingKey {
         case title
         case thumbnail
-        case author, clicked, created
+        case author, clicked, created, url
         case numComments = "num_comments"
+        case isVideo = "is_video"
     }
 }
