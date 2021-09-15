@@ -8,35 +8,82 @@
 import XCTest
 
 class RedditAppUITests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testDeleteCells() throws {
         let app = XCUIApplication()
         app.launch()
+        
+        let redditappPostdetailviewNavigationBar = app.navigationBars["RedditApp.PostDetailView"]
+        redditappPostdetailviewNavigationBar/*@START_MENU_TOKEN@*/.buttons["BackButton"]/*[[".buttons[\" \"]",".buttons[\"BackButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let tablesQuery = app.tables
+        tablesQuery.children(matching: .cell).element(boundBy: 0).firstMatch.tap()
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let popoverdismissregionElement = app/*@START_MENU_TOKEN@*/.otherElements["PopoverDismissRegion"]/*[[".otherElements[\"dismiss popup\"]",".otherElements[\"PopoverDismissRegion\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        popoverdismissregionElement.tap()
+        
+        redditappPostdetailviewNavigationBar/*@START_MENU_TOKEN@*/.buttons["BackButton"]/*[[".buttons[\" \"]",".buttons[\"BackButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        app.navigationBars["RedditApp.PostListTableView"].buttons["Delete"].tap()
+        XCTAssert(tablesQuery.children(matching: .cell).count == 0)
+//        app.tables["Empty list"]/*@START_MENU_TOKEN@*/.swipeDown()/*[[".swipeDown()",".swipeLeft()"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/
     }
+    
+    func testSaveImageFlow() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        let redditappPostdetailviewNavigationBar = app.navigationBars["RedditApp.PostDetailView"]
+        redditappPostdetailviewNavigationBar/*@START_MENU_TOKEN@*/.buttons["BackButton"]/*[[".buttons[\" \"]",".buttons[\"BackButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let tablesQuery = app.tables
+        tablesQuery.children(matching: .cell).element(boundBy: 0).firstMatch.tap()
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+        let popoverdismissregionElement = app/*@START_MENU_TOKEN@*/.otherElements["PopoverDismissRegion"]/*[[".otherElements[\"dismiss popup\"]",".otherElements[\"PopoverDismissRegion\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        popoverdismissregionElement.tap()
+    
+        app/*@START_MENU_TOKEN@*/.staticTexts["Save Image"]/*[[".buttons[\"Save Image\"].staticTexts[\"Save Image\"]",".buttons[\"saveImage\"].staticTexts[\"Save Image\"]",".staticTexts[\"Save Image\"]"],[[[-1,2],[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        app.alerts["Saved!"].scrollViews.otherElements.buttons["OK"].tap()
+    }
+    
+    func testPagination() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        let redditappPostdetailviewNavigationBar = app.navigationBars["RedditApp.PostDetailView"]
+        redditappPostdetailviewNavigationBar/*@START_MENU_TOKEN@*/.buttons["BackButton"]/*[[".buttons[\" \"]",".buttons[\"BackButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let tablesQuery = app.tables
+        tablesQuery.children(matching: .cell).element(boundBy: 0).firstMatch.tap()
+
+        let popoverdismissregionElement = app/*@START_MENU_TOKEN@*/.otherElements["PopoverDismissRegion"]/*[[".otherElements[\"dismiss popup\"]",".otherElements[\"PopoverDismissRegion\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        popoverdismissregionElement.tap()
+        
+        redditappPostdetailviewNavigationBar/*@START_MENU_TOKEN@*/.buttons["BackButton"]/*[[".buttons[\" \"]",".buttons[\"BackButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        app.navigationBars["RedditApp.PostListTableView"].buttons["Delete"].tap()
+        XCTAssertTrue(tablesQuery.children(matching: .cell).count == 0)
+        app.tables["Empty list"]/*@START_MENU_TOKEN@*/.swipeDown()/*[[".swipeDown()",".swipeLeft()"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/
+        XCTAssertTrue(tablesQuery.children(matching: .cell).count == 10)
+        tablesQuery.children(matching: .cell).element(boundBy: 10).swipeUp()
+        XCTAssert(tablesQuery.children(matching: .cell).count == 30)
+    }
+    
+    func tests() throws{
+        let app = XCUIApplication()
+        app.launch()
+        
+        let redditappPostdetailviewNavigationBar = app.navigationBars["RedditApp.PostDetailView"]
+        redditappPostdetailviewNavigationBar/*@START_MENU_TOKEN@*/.buttons["BackButton"]/*[[".buttons[\" \"]",".buttons[\"BackButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+
+        let tablesQuery = app.tables
+        tablesQuery.children(matching: .cell).element(boundBy: 0).firstMatch.tap()
+
+        let popoverdismissregionElement = app/*@START_MENU_TOKEN@*/.otherElements["PopoverDismissRegion"]/*[[".otherElements[\"dismiss popup\"]",".otherElements[\"PopoverDismissRegion\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        popoverdismissregionElement.tap()
+
+        XCTAssert(app.otherElements["readStatus"].exists)
     }
 }
+
+

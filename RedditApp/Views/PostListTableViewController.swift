@@ -31,10 +31,10 @@ class PostListTableViewController: UITableViewController {
         myRefreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.refreshControl = myRefreshControl
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(addTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteTapped))
     }
     
-    @objc func addTapped(_ sender: AnyObject) {
+    @objc func deleteTapped(_ sender: AnyObject) {
         let size = self.posts.count - 1
         self.viewModel.listData = nil
         var indexPaths: [IndexPath] = []
@@ -111,5 +111,10 @@ extension PostListTableViewController: PostViewModelDelegate {
         viewModel.listData = list
         posts += list.children
         tableView.reloadData()
+        
+        if let vc = (splitViewController?.viewControllers.last as? UINavigationController)?.topViewController as? PostDetailViewController , vc.isfirstLauch {
+            vc.post = list.children.first?.data
+            vc.isfirstLauch = false
+        }
     }
 }

@@ -121,6 +121,14 @@
 			path = extensions;
 			sourceTree = "<group>";
 		};
+		DAA5715926F24F6900F2ED9A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DAA4A06026EFCEDA0030BDCC /* Listing.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DAF4E5C826EFB9580013E87D = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +152,7 @@
 		DAF4E5D326EFB9580013E87D /* RedditApp */ = {
 			isa = PBXGroup;
 			children = (
+				DAA5715926F24F6900F2ED9A /* Model */,
 				DAA4A06526EFF4B00030BDCC /* Views */,
 				DAA4A06226EFF05C0030BDCC /* ViewModel */,
 				DAF4E60426EFBF3E0013E87D /* Service */,
@@ -179,7 +188,6 @@
 			isa = PBXGroup;
 			children = (
 				DAA4A05C26EFCD490030BDCC /* Service.swift */,
-				DAA4A06026EFCEDA0030BDCC /* Listing.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";

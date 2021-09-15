@@ -9,17 +9,18 @@ import UIKit
 
 class PostDetailViewController: UIViewController {
     
-    @IBOutlet weak private var postTitle: UILabel!
-    @IBOutlet weak private var author: UILabel!
-    @IBOutlet weak private var entryDate: UILabel!
-    @IBOutlet weak private var numberOfComments: UILabel!
-    @IBOutlet weak private var thumbnail: UIImageView!
-    @IBOutlet weak private var readStatus: UIView!
-    @IBOutlet weak private var saveButton: UIButton!
-    @IBOutlet weak private var cardView: UIView!
+    @IBOutlet weak  var postTitle: UILabel!
+    @IBOutlet weak  var author: UILabel!
+    @IBOutlet weak  var entryDate: UILabel!
+    @IBOutlet weak  var numberOfComments: UILabel!
+    @IBOutlet weak  var thumbnail: UIImageView!
+    @IBOutlet weak  var readStatus: UIView!
+    @IBOutlet weak  var saveButton: UIButton!
+    @IBOutlet weak  var cardView: UIView!
     
     private var viewModel = PostDetailViewModel()
-
+    var isfirstLauch = true
+    
     var post: PostData? {
         didSet {
             configureUI()
@@ -29,6 +30,12 @@ class PostDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        postTitle.numberOfLines = 0
+        saveButton.layer.cornerRadius = 5
+        readStatus.layer.cornerRadius = 10
+
+        setUpCardView()
+
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
         cardView.addGestureRecognizer(tapGestureRecognizer)
     }
@@ -43,20 +50,11 @@ class PostDetailViewController: UIViewController {
             }
         }
         
-        postTitle.numberOfLines = 0
         postTitle.text = post.title
-        
         author.text = "Author: \(post.author)"
-        
         numberOfComments.text = "comments: \(post.numComments)"
-        
         readStatus.backgroundColor = post.clicked ? #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1) : #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-        
         entryDate.text = viewModel.getDate(from: post)
-        
-        saveButton.layer.cornerRadius = 5
-        readStatus.layer.cornerRadius = 10
-        setUpCardView()
     }
     
     private func setUpCardView() {
@@ -68,7 +66,6 @@ class PostDetailViewController: UIViewController {
     }
     
     @objc func didTapView(_ sender: UITapGestureRecognizer) {
-        print("did tap view", sender)
         if let post = post, !post.isVideo, let imageURL = URL(string: post.url) {
             let imageViewController = ImageViewController()
             
